@@ -16,16 +16,16 @@ class Header:
     def get_current_geo(self) -> str:
         return self.browser.get_text(self.GEO_CHANGE_BUTTON).strip()
 
-    def press_the_geo_button(self) -> None:
+    def click_geo_button(self) -> None:
         self.browser.click_element(self.GEO_CHANGE_BUTTON)
 
-    def press_the_help_button(self) -> None:
+    def click_help_button(self) -> None:
         self.browser.click_element(self.HELP_BUTTON)
 
-    def press_the_login_button(self) -> None:
+    def click_login_button(self) -> None:
         self.browser.click_element(self.LOGIN_BUTTON)
 
-    def press_the_service_button(self) -> None:
+    def click_service_button(self) -> None:
         self.browser.click_element(self.SERVICE_BUTTON)
 
 
