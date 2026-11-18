@@ -7,7 +7,7 @@ import pytest
 ],
     ids=["ru","wrong_keyboard_layout"])
 def test_selection_geo_search(main_page, search_query, expected_city):
-    main_page.header.click_the_geo_button()
+    main_page.header.click_geo_button()
     main_page.geo_dropdown.search(search_query)
     main_page.geo_dropdown.select_city(expected_city)
 
