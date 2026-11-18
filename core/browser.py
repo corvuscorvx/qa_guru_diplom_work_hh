@@ -12,14 +12,30 @@ class Browser:
         self.default_timeout = default_timeout
         self.wait = WebDriverWait(driver, default_timeout)
 
+    def get_text(self, locator: Tuple[str, str]) -> str:
+        element = self.wait_for_element_visible(locator)
+        return element.text
+
+    def get_current_url(self) -> str:
+        return self.driver.current_url
+
     def wait_for_element_visible(self, locator: Tuple[str, str]):
         return self.wait.until(ec.visibility_of_element_located(locator))
+
+    def wait_for_elements_visible(self, locator: Tuple[str, str]):
+        return self.wait.until(ec.visibility_of_all_elements_located(locator))
 
     def wait_for_element_clickable(self, locator: Tuple[str, str]):
         return self.wait.until(ec.element_to_be_clickable(locator))
 
     def wait_for_element_invisible(self, locator: Tuple[str, str]):
         return self.wait.until(ec.invisibility_of_element_located(locator))
+
+    def wait_for_url_in_new_tab(self, url_part: str) -> bool:
+        self.wait.until(lambda driver: len(driver.window_handles) > 1)
+        new_window = self.driver.window_handles[-1]
+        self.driver.switch_to.window(new_window)
+        return bool(self.wait.until(ec.url_contains(url_part)))
 
     def click_element(self, locator: Tuple[str, str]) -> None:
         element = self.wait_for_element_clickable(locator)
@@ -31,20 +47,7 @@ class Browser:
         element.clear()
         element.send_keys(text_to_send)
 
-    def get_text(self, locator: Tuple[str, str]) -> str:
-        element = self.wait_for_element_visible(locator)
-        return element.text
-
     def scroll_to_element(self, locator: Tuple[str, str]):
         element = self.wait.until(ec.presence_of_element_located(locator))
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
         return element
-
-    def get_current_url(self) -> str:
-        return self.driver.current_url
-
-    def wait_for_url_in_new_tab(self, url_part: str) -> bool:
-        self.wait.until(lambda driver: len(driver.window_handles) > 1)
-        new_window = self.driver.window_handles[-1]
-        self.driver.switch_to.window(new_window)
-        return bool(self.wait.until(ec.url_contains(url_part)))
