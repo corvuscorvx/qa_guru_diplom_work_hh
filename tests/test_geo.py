@@ -1,18 +1,28 @@
 import pytest
 
 
-@pytest.mark.parametrize("search_query, expected_city", [
-    ("Москва", "Москва"),
-    ("Yjdujhjl", "Новгород"),
+@pytest.mark.parametrize("search_query, expected_substring", [
+    ("Уфа", "уфа"),
+    ("А", "а"),
+    ("Yjdujhjl", "новгород")
 ],
-    ids=["ru","wrong_keyboard_layout"])
-def test_selection_geo_search(main_page, search_query, expected_city):
+    ids=["ru", "one_symbol", "wrong_keyboard_layout"])
+def test_geo_search_positive(main_page, search_query, expected_substring):
     main_page.header.click_geo_button()
     main_page.geo_dropdown.search(search_query)
-    main_page.geo_dropdown.select_city(expected_city)
 
-    actual_geo = main_page.header.get_current_geo()
-    assert expected_city in actual_geo, f"Ожидалось '{expected_city}', отображается '{actual_geo}'"
+    results = main_page.geo_dropdown.wait_for_search_results(expected_substring)
+
+    assert len(results) > 0, f"По запросу '{search_query}' список результатов пуст"
+    assert all(expected_substring in card.lower() for card in results), f"Найдены нерелевантные карточки по запросу '{search_query}': {results}"
+
+
+def test_geo_search_negative(main_page):
+    main_page.header.click_geo_button()
+    main_page.geo_dropdown.search("ловрблми")
+
+    actual_message = main_page.geo_dropdown.get_empty_search_message()
+    assert actual_message == "Не нашли такого города", f"Ожидалось сообщение 'Не нашли такого города', получено '{actual_message}'"
 
 
 def test_selection_geo_scroll(main_page):
@@ -36,6 +46,7 @@ def test_clear_geo_input(main_page):
 
     actual_text = main_page.geo_dropdown.get_text_in_input()
     assert actual_text == "", f"Поле поиска не очищено, отображается '{actual_text}'"
+
 
 def test_close_geo_dropdown(main_page):
     main_page.header.click_geo_button()
