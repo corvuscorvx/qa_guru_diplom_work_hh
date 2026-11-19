@@ -1,6 +1,11 @@
 import pytest
+import allure
 
-
+@allure.epic("Геолокация")
+@allure.feature("Изменение геолокации")
+@allure.story("Поиск")
+@allure.title("По тексту")
+@allure.tag("Positive")
 @pytest.mark.parametrize("search_query, expected_substring", [
     ("Уфа", "уфа"),
     ("А", "а"),
@@ -17,6 +22,11 @@ def test_geo_search_positive(main_page, search_query, expected_substring):
     assert all(expected_substring in card.lower() for card in results), f"Найдены нерелевантные карточки по запросу '{search_query}': {results}"
 
 
+@allure.epic("Геолокация")
+@allure.feature("Изменение геолокации")
+@allure.story("Поиск")
+@allure.title("По тексту")
+@allure.tag("Negative")
 def test_geo_search_negative(main_page):
     main_page.header.click_geo_button()
     main_page.geo_dropdown.search("ловрблми")
@@ -25,6 +35,11 @@ def test_geo_search_negative(main_page):
     assert actual_message == "Не нашли такого города", f"Ожидалось сообщение 'Не нашли такого города', получено '{actual_message}'"
 
 
+@allure.epic("Геолокация")
+@allure.feature("Изменение геолокации")
+@allure.story("Поиск")
+@allure.title("Скролл")
+@allure.tag("Positive")
 def test_selection_geo_scroll(main_page):
     main_page.header.click_geo_button()
     cities = main_page.geo_dropdown.get_available_cities()
@@ -38,6 +53,11 @@ def test_selection_geo_scroll(main_page):
     assert last_city in actual_geo, f"Ожидалось '{last_city}', отображается '{actual_geo}'"
 
 
+@allure.epic("Геолокация")
+@allure.feature("Изменение геолокации")
+@allure.story("Поиск")
+@allure.title("Очистка поля поиска")
+@allure.tag("Positive")
 def test_clear_geo_input(main_page):
     text = "jkhjhgj"
     main_page.header.click_geo_button()
@@ -48,10 +68,13 @@ def test_clear_geo_input(main_page):
     assert actual_text == "", f"Поле поиска не очищено, отображается '{actual_text}'"
 
 
+@allure.epic("Геолокация")
+@allure.feature("Изменение геолокации")
+@allure.story("Поиск")
+@allure.title("Закрыть выпадающий список")
+@allure.tag("Positive")
 def test_close_geo_dropdown(main_page):
     main_page.header.click_geo_button()
     main_page.geo_dropdown.close_dropdown()
 
     assert main_page.geo_dropdown.is_closed(), "Дропдаун выбора города не закрылся"
-
-# TODO: добавить тест на закрытие тапом мимо списка
