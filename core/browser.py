@@ -17,6 +17,9 @@ class Browser:
     def _wait(self, timeout: Optional[int] = None) -> WebDriverWait:
         return WebDriverWait(self.driver, timeout or self.default_timeout)
 
+    def wait_until(self, condition, timeout: Optional[int] = None):
+        return self._wait(timeout).until(condition)
+
     def get_text(self, locator: Tuple[str, str]) -> str:
         element = self.wait_for_element_visible(locator)
         return element.text

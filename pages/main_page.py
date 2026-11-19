@@ -1,1 +1,8 @@
-#TODO: разобраться с поп-апами про куки и гео при хаоде на сайт (смотри ОС по дз про триколор)
+import allure
+from selenium.webdriver.common.by import By
+
+from pages.base_page import BasePage
+
+
+class MainPage(BasePage):
+    pass
