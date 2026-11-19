@@ -4,7 +4,7 @@ import allure
 @allure.epic("Геолокация")
 @allure.feature("Изменение геолокации")
 @allure.story("Поиск")
-@allure.title("По тексту")
+@allure.title("Поиск города по тексту ({search_query})")
 @allure.tag("Positive")
 @pytest.mark.parametrize("search_query, expected_substring", [
     ("Уфа", "уфа"),
@@ -25,7 +25,7 @@ def test_geo_search_positive(main_page, search_query, expected_substring):
 @allure.epic("Геолокация")
 @allure.feature("Изменение геолокации")
 @allure.story("Поиск")
-@allure.title("По тексту")
+@allure.title("Поиск несуществующего города отображает заглушку")
 @allure.tag("Negative")
 def test_geo_search_negative(main_page):
     main_page.header.click_geo_button()
