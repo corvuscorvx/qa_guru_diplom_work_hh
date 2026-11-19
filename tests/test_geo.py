@@ -40,7 +40,7 @@ def test_geo_search_negative(main_page):
 @allure.story("Поиск")
 @allure.title("Скролл")
 @allure.tag("Positive")
-def test_selection_geo_scroll(main_page):
+def test_geo_selection_scroll(main_page):
     main_page.header.click_geo_button()
     cities = main_page.geo_dropdown.get_available_cities()
     assert cities, "Список городов в дропдауне пуст"
@@ -58,7 +58,7 @@ def test_selection_geo_scroll(main_page):
 @allure.story("Поиск")
 @allure.title("Очистка поля поиска")
 @allure.tag("Positive")
-def test_clear_geo_input(main_page):
+def test_geo_clear_input(main_page):
     text = "jkhjhgj"
     main_page.header.click_geo_button()
     main_page.geo_dropdown.search(text)
@@ -73,7 +73,7 @@ def test_clear_geo_input(main_page):
 @allure.story("Поиск")
 @allure.title("Закрыть выпадающий список")
 @allure.tag("Positive")
-def test_close_geo_dropdown(main_page):
+def test_geo_close_dropdown(main_page):
     main_page.header.click_geo_button()
     main_page.geo_dropdown.close_dropdown()
 
