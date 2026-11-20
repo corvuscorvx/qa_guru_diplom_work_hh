@@ -76,7 +76,7 @@ def driver(request):
     )
 
     driver.set_window_size(int(width), int(height))
-    driver.implicitly_wait(5)
+    # driver.implicitly_wait(5)
 
     if url:
         clean_url = url.rstrip("/")
@@ -115,6 +115,17 @@ def browser(driver):
 def main_page(browser, base_url):
     browser.driver.get(f"{base_url}")
     return MainPage(browser)
+
+@pytest.fixture
+def opened_geo_dropdown(main_page):
+    main_page.header.click_geo_button()
+    return main_page.geo_dropdown
+
+@pytest.fixture
+def opened_chat_widget(main_page):
+    main_page.header.click_help_button()
+    main_page.help_modal.click_ask_in_chat()
+    return main_page.chat_widget
 
 
 # @pytest.fixture(scope="function")
