@@ -20,8 +20,8 @@ class Browser:
     def wait_until(self, condition, timeout: Optional[int] = None):
         return self._wait(timeout).until(condition)
 
-    def get_text(self, locator: Tuple[str, str]) -> str:
-        element = self.wait_for_element_visible(locator)
+    def get_text(self, locator: Tuple[str, str], timeout: Optional[int] = None) -> str:
+        element = self.wait_for_element_visible(locator, timeout=timeout)
         return element.text
 
     def get_attribute(self, locator: Tuple[str, str], attribute_name: str) -> str:
@@ -64,3 +64,9 @@ class Browser:
         element = self._wait().until(ec.presence_of_element_located(locator))
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
         return element
+
+    def switch_to_frame(self, locator: Tuple[str, str], timeout: Optional[int] = None) -> None:
+        self._wait(timeout).until(ec.frame_to_be_available_and_switch_to_it(locator))
+
+    def switch_to_default_content(self) -> None:
+        self.driver.switch_to.default_content()

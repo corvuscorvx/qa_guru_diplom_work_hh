@@ -7,7 +7,6 @@ from core.browser import Browser
 class Header:
     HELP_BUTTON = (By.CSS_SELECTOR, '[data-qa="help-button"]')
     LOGIN_BUTTON = (By.CSS_SELECTOR, '[data-qa="login mainmenu_loginButton"]')
-    SERVICE_BUTTON = (By.CSS_SELECTOR, '[data-qa="allServices-button"]')
     GEO_CHANGE_BUTTON = (By.CSS_SELECTOR, '[data-qa="geoSwitcher-button"]')
 
     def __init__(self, browser: Browser):
@@ -28,10 +27,6 @@ class Header:
     @allure.step('Нажать кнопку "Войти"')
     def click_login_button(self) -> None:
         self.browser.click_element(self.LOGIN_BUTTON)
-
-    @allure.step('Нажать кнопку "Сервисы"')
-    def click_service_button(self) -> None:
-        self.browser.click_element(self.SERVICE_BUTTON)
 
 
 

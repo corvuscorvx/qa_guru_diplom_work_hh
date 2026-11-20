@@ -124,7 +124,8 @@ def opened_geo_dropdown(main_page):
 @pytest.fixture
 def opened_chat_widget(main_page):
     main_page.header.click_help_button()
-    main_page.help_modal.click_ask_in_chat()
+    main_page.help_modal.click_support_button()
+    main_page.chat_widget.switch_to_frame()
     return main_page.chat_widget
 
 
