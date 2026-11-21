@@ -116,12 +116,14 @@ def main_page(browser, base_url):
     browser.driver.get(f"{base_url}")
     return MainPage(browser)
 
-@pytest.fixture
+
+@pytest.fixture(scope="function")
 def opened_geo_dropdown(main_page):
     main_page.header.click_geo_button()
     return main_page.geo_dropdown
 
-@pytest.fixture
+
+@pytest.fixture(scope="function")
 def opened_chat_widget(main_page):
     main_page.header.click_help_button()
     main_page.help_modal.click_support_button()
