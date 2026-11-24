@@ -72,11 +72,11 @@ class ChatWidget:
 
     @allure.step('Переключить состояние уведомлений в чате')
     def switch_toggle_notifications(self) -> None:
-        self.browser.click_element(self.TOGGLE_NOTIFICATIONS_BUTTON)
+        self.browser.js_click_element(self.TOGGLE_NOTIFICATIONS_BUTTON)
 
     @allure.step('Нажать кнопку "Оценить диалог с поддержкой"')
     def click_rate_chat(self) -> None:
-        self.browser.click_element(self.RATE_CHAT_BUTTON)
+        self.browser.js_click_element(self.RATE_CHAT_BUTTON)
 
     @allure.step('Получить текст последнего сообщения в чате')
     def get_last_message_text(self) -> str:

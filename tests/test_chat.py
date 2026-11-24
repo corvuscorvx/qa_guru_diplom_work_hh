@@ -1,5 +1,4 @@
 import allure
-import time
 
 
 @allure.epic("Помощь и поддержка")
@@ -71,7 +70,6 @@ def test_rate_empty_dialog(opened_chat_widget):
     opened_chat_widget.open_menu()
     assert opened_chat_widget.is_opened_bottom_sheet(), "Ботомшит не открылось"
 
-    time.sleep(1)
     opened_chat_widget.click_rate_chat()
     assert opened_chat_widget.is_closed_bottom_sheet(), "Ботомшит не закрылось после нажатия на оценку"
 

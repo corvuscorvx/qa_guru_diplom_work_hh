@@ -11,7 +11,6 @@ class Browser:
     def __init__(self, driver: WebDriver, default_timeout: int = 10):
         self.driver = driver
         self.default_timeout = default_timeout
-        self.wait = WebDriverWait(driver, default_timeout)
 
     def _wait(self, timeout: Optional[int] = None) -> WebDriverWait:
         return WebDriverWait(self.driver, timeout or self.default_timeout)
@@ -51,6 +50,10 @@ class Browser:
     def click_element(self, locator: Tuple[str, str]) -> None:
         element = self.wait_for_element_clickable(locator)
         element.click()
+
+    def js_click_element(self, locator: Tuple[str, str]) -> None:
+        element = self.wait_for_element_clickable(locator)
+        self.driver.execute_script("arguments[0].click();", element)
 
     def send_keys_to_element(self, locator: Tuple[str, str], text: str | int) -> None:
         text_to_send = str(text)
