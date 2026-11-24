@@ -22,7 +22,7 @@ def pytest_addoption(parser):
     parser.addoption(
         "--browser_version",
         default="157.0",
-        choices=("148.0", "153.0", "156.0", "157.0"),
+        choices=("148.0", "157.0", "158.0"),
         help="Browser version to use"
     )
     parser.addoption(
@@ -129,8 +129,3 @@ def opened_chat_widget(main_page):
     main_page.help_modal.click_support_button()
     main_page.chat_widget.switch_to_frame()
     return main_page.chat_widget
-
-
-# @pytest.fixture(scope="function")
-# def search_page(browser):
-#     return SearchPage(browser)

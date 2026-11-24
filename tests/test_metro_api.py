@@ -3,7 +3,6 @@ import requests
 from jsonschema import validate
 from schemas.metro_schema import all_city_metro_schema, city_metro_schema, error_metro_schema
 
-
 BASE_URL = "https://" + "api." + "hh.ru"
 HEADERS = {"HH-User-Agent": "QA_guru_student_api/1.0 (test_guru_api@mail.com)"}
 
@@ -31,7 +30,6 @@ def test_get_all_metro_cities():
         assert "2" in city_ids
 
 
-
 @allure.epic("Справочники")
 @allure.feature("Метро")
 @allure.story("Фильтрация по метро")
@@ -52,7 +50,6 @@ def test_get_city_metro_stations():
         assert body["id"] == "2"
         assert body["name"] == "Санкт-Петербург"
         assert len(body["lines"]) > 0
-
 
 
 @allure.epic("Справочники")

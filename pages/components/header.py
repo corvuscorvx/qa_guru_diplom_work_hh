@@ -27,8 +27,3 @@ class Header:
     @allure.step('Нажать кнопку "Войти"')
     def click_login_button(self) -> None:
         self.browser.click_element(self.LOGIN_BUTTON)
-
-
-
-
-

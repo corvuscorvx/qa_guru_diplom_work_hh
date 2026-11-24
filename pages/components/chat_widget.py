@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 from core.browser import Browser
 
+
 class ChatWidget:
     CHAT_TITLE = (By.CSS_SELECTOR, '[data-qa="participant-info-title"]')
     CHATS_LIST = (By.XPATH, '//*[@data-qa="chatik-layout"]//*[normalize-space()="Чаты"]')
@@ -16,8 +17,6 @@ class ChatWidget:
     RATE_CHAT_BUTTON = (By.CSS_SELECTOR, '[data-qa="chatik-chat-rate-chat"]')
     CLOSE_CHAT_BUTTON = (By.CSS_SELECTOR, '[data-qa="chatik-close-chatik"]')
     TOGGLE_NOTIFICATIONS_BUTTON = (By.CSS_SELECTOR, '[data-qa*="chatik-chat-toggle-notifications"]')
-
-
 
     def __init__(self, browser: Browser):
         self.browser = browser
@@ -109,5 +108,3 @@ class ChatWidget:
             return bool(self.browser.wait_for_element_visible(self.CHATS_LIST, timeout=5))
         except TimeoutException:
             return False
-
-

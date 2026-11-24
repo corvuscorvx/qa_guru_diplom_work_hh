@@ -1,6 +1,7 @@
 import pytest
 import allure
 
+
 @allure.epic("Геолокация")
 @allure.feature("Изменение геолокации")
 @allure.story("Поиск")
@@ -11,14 +12,15 @@ import allure
     ("А", "а"),
     ("Yjdujhjl", "новгород")
 ],
-    ids=["ru", "one_symbol", "wrong_keyboard_layout"])
+                         ids=["ru", "one_symbol", "wrong_keyboard_layout"])
 def test_geo_search_positive(opened_geo_dropdown, search_query, expected_substring):
     opened_geo_dropdown.search(search_query)
 
     results = opened_geo_dropdown.wait_for_search_results(expected_substring)
 
     assert len(results) > 0, f"По запросу '{search_query}' список результатов пуст"
-    assert all(expected_substring in card.lower() for card in results), f"Найдены нерелевантные карточки по запросу '{search_query}': {results}"
+    assert all(expected_substring in card.lower() for card in
+               results), f"Найдены нерелевантные карточки по запросу '{search_query}': {results}"
 
 
 @allure.epic("Геолокация")

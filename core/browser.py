@@ -6,7 +6,6 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as ec
 
 
-
 class Browser:
 
     def __init__(self, driver: WebDriver, default_timeout: int = 10):

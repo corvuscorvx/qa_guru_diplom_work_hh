@@ -15,7 +15,6 @@ class GeoDropdown:
     EMPTY_CITY_MESSAGE = (By.CSS_SELECTOR, '[data-qa="drop-base"] [class*="magritte-text_typography-title-5-semibold"]')
     SEARCH_RESULT_ITEMS = (By.CSS_SELECTOR, '[data-qa="drop-base"] [data-qa="cell"]')
 
-
     def __init__(self, browser: Browser):
         self.browser = browser
 

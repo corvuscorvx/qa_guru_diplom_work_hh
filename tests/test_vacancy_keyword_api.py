@@ -3,7 +3,6 @@ import requests
 from jsonschema import validate
 from schemas.keyword_schema import keyword_search_schema, keyword_error_schema
 
-
 BASE_URL = "https://" + "api." + "hh.ru"
 HEADERS = {"HH-User-Agent": "QA_guru_student_api/1.0 (test_guru_api@mail.com)"}
 ENDPOINT = '/suggests/vacancy_search_keyword'
@@ -77,7 +76,6 @@ def test_search_keyword_incorrect_negative():
         assert len(body["items"]) == 0
 
 
-
 @allure.epic("Поиск")
 @allure.feature("Поисковые подсказки")
 @allure.story("Поиск вакансии")
@@ -98,7 +96,6 @@ def test_search_keyword_short_negative():
 
     with allure.step("Проверить наличие блока 'errors' в теле ответа"):
         assert "errors" in body
-
 
 
 @allure.epic("Поиск")
