@@ -1,7 +1,10 @@
+import pytest
 import allure
 import requests
 from jsonschema import validate
 from schemas.keyword_schema import keyword_search_schema, keyword_error_schema
+
+pytestmark = [pytest.mark.api, pytest.mark.keyword]
 
 BASE_URL = "https://" + "api." + "hh.ru"
 HEADERS = {"HH-User-Agent": "QA_guru_student_api/1.0 (test_guru_api@mail.com)"}

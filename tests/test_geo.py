@@ -1,6 +1,8 @@
 import pytest
 import allure
 
+pytestmark = [pytest.mark.ui, pytest.mark.geo]
+
 
 @allure.epic("Геолокация")
 @allure.feature("Изменение геолокации")

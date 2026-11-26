@@ -1,7 +1,10 @@
+import pytest
 import allure
 import requests
 from jsonschema import validate
 from schemas.metro_schema import all_city_metro_schema, city_metro_schema, error_metro_schema
+
+pytestmark = [pytest.mark.api, pytest.mark.metro]
 
 BASE_URL = "https://" + "api." + "hh.ru"
 HEADERS = {"HH-User-Agent": "QA_guru_student_api/1.0 (test_guru_api@mail.com)"}

@@ -1,4 +1,7 @@
+import pytest
 import allure
+
+pytestmark = [pytest.mark.ui, pytest.mark.chat]
 
 
 @allure.epic("Помощь и поддержка")
