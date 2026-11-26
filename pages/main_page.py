@@ -1,1 +1,5 @@
-#TODO: разобраться с поп-апами про куки и гео при хаоде на сайт (смотри ОС по дз про триколор)
+from pages.base_page import BasePage
+
+
+class MainPage(BasePage):
+    pass
