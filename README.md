@@ -10,6 +10,7 @@
 
 * **Сборка проекта в Jenkins:** [Перейти в Jenkins](<https://jenkins.qa.guru/job/Diplom_qa_guru_hh/>)
 * **Отчет Allure Report:** [Открыть отчёт](<https://jenkins.qa.guru/job/Diplom_qa_guru_hh/6/allure/>)
+* **Allure TestOps:** [Открыть лаунчер](<https://allure.qa.guru/project/5453/launches>)
 
 ## 📑 Содержание
 
